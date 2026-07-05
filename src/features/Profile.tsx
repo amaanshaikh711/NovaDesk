@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card, CardContent, Input, Button } from "../components";
 import { Mail, Briefcase, MapPin, Check } from "lucide-react";
 import { cn } from "../lib/utils";
 

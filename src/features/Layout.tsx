@@ -12,7 +12,6 @@ import {
   Menu,
   X,
   Bell,
-  Layers,
   Mic,
   Search,
 } from "lucide-react";
@@ -53,9 +52,8 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       return;
     }
 
-    // @ts-ignore
     const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
 
     recognition.continuous = false;
