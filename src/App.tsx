@@ -1,30 +1,30 @@
-import { useState } from 'react';
-import { 
-  Layout, 
-  Dashboard, 
-  Attendance, 
-  Leaves, 
-  TeamDirectory, 
-  Announcements, 
-  Profile 
-} from './features';
+import { useState } from "react";
+import {
+  Layout,
+  Dashboard,
+  Attendance,
+  Leaves,
+  TeamDirectory,
+  Announcements,
+  Profile,
+} from "./features";
 
 function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState("dashboard");
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'dashboard':
+      case "dashboard":
         return <Dashboard setActiveTab={setActiveTab} />;
-      case 'attendance':
+      case "attendance":
         return <Attendance />;
-      case 'leaves':
+      case "leaves":
         return <Leaves />;
-      case 'team':
+      case "team":
         return <TeamDirectory />;
-      case 'announcements':
+      case "announcements":
         return <Announcements />;
-      case 'profile':
+      case "profile":
         return <Profile />;
       default:
         return <Dashboard setActiveTab={setActiveTab} />;

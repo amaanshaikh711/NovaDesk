@@ -1,4 +1,5 @@
-export type LeaveType = 'Casual' | 'Sick' | 'Earned' | 'Maternity' | 'Paternity';
+export type LeaveType =
+  "Casual" | "Sick" | "Earned" | "Maternity" | "Paternity";
 
 export interface LeaveRequest {
   id: string;
@@ -6,7 +7,7 @@ export interface LeaveRequest {
   endDate: Date;
   type: LeaveType;
   reason: string;
-  status: 'Pending' | 'Approved' | 'Rejected';
+  status: "Pending" | "Approved" | "Rejected";
   createdAt: Date;
 }
 
@@ -27,13 +28,13 @@ export interface Announcement {
   content: string;
   date: Date;
   author: string;
-  category: 'General' | 'HR' | 'IT' | 'Finance';
+  category: "General" | "HR" | "IT" | "Finance";
   isRead?: boolean;
 }
 
 export interface AttendanceRecord {
   date: Date;
-  status: 'Present' | 'Absent' | 'Half-Day' | 'Leave';
+  status: "Present" | "Absent" | "Half-Day" | "Leave";
   checkIn?: Date;
   checkOut?: Date;
 }
