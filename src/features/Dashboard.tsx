@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   TrendingUp,
   Clock,
@@ -43,6 +43,19 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
   const [showAISummary, setShowAISummary] = useState(false);
   const [isSummarizing, setIsSummarizing] = useState(false);
   const [summary, setSummary] = useState<string[]>([]);
+  const [selectedMonth, setSelectedMonth] = useState<string>(
+    format(new Date(), "MMMM yyyy")
+  );
+
+  const monthsList = useMemo(() => {
+    const months = [];
+    const date = new Date();
+    for (let i = 0; i < 12; i++) {
+      months.push(format(date, "MMMM yyyy"));
+      date.setMonth(date.getMonth() - 1);
+    }
+    return months;
+  }, []);
 
   const leaveStats = {
     casual: { used: 3, total: 12 },
@@ -65,17 +78,21 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
     }, 2000);
   };
 
-  const attendanceChartData = MOCK_ATTENDANCE_RECORDS.slice(-15).map((r) => {
-    let hours = 0;
-    if (r.checkIn && r.checkOut) {
-      hours = (r.checkOut.getTime() - r.checkIn.getTime()) / (1000 * 60 * 60);
-    }
-    return {
-      name: format(r.date, "dd"),
-      hours: parseFloat(hours.toFixed(1)),
-      status: r.status,
-    };
-  });
+  const attendanceChartData = useMemo(() => {
+    return MOCK_ATTENDANCE_RECORDS.filter(
+      (r) => format(r.date, "MMMM yyyy") === selectedMonth
+    ).map((r) => {
+      let hours = 0;
+      if (r.checkIn && r.checkOut) {
+        hours = (r.checkOut.getTime() - r.checkIn.getTime()) / (1000 * 60 * 60);
+      }
+      return {
+        name: format(r.date, "dd"),
+        hours: parseFloat(hours.toFixed(1)),
+        status: r.status,
+      };
+    });
+  }, [selectedMonth]);
 
   return (
     <div className="space-y-6">
@@ -227,9 +244,14 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
           <CardHeader>
             <div className="flex justify-between items-center">
               <CardTitle>Monthly Attendance</CardTitle>
-              <select className="bg-transparent text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5">
-                <option>July 2024</option>
-                <option>June 2024</option>
+              <select 
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="bg-transparent text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-violet-500 outline-none cursor-pointer"
+              >
+                {monthsList.map(month => (
+                  <option key={month} value={month}>{month}</option>
+                ))}
               </select>
             </div>
           </CardHeader>

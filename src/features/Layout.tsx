@@ -117,11 +117,10 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
             )}
           >
             {isSidebarOpen ? (
-              <img
-                src="/logo.png"
-                alt="FlowDesk"
-                className="h-16 w-auto object-contain object-left mix-blend-multiply dark:mix-blend-normal transform scale-125 origin-left"
-              />
+              <>
+                <img src="/logo.png" alt="FlowDesk" className="h-16 w-auto object-contain object-left mix-blend-multiply transform scale-125 origin-left dark:hidden" />
+                <img src="/logo-dark.png" alt="FlowDesk" className="h-16 w-auto object-contain object-left transform scale-125 origin-left hidden dark:block" />
+              </>
             ) : (
               <img
                 src="/favicon.png"
@@ -183,7 +182,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
         {/* Header */}
-        <header className="h-16 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 md:px-8 sticky top-0 z-10">
+        <header className="h-16 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 md:px-8 sticky top-0 z-50">
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
@@ -234,7 +233,7 @@ export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
 
               {/* Notification Dropdown */}
               {isNotificationsOpen && (
-                <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 overflow-hidden z-50">
+                <div className="absolute right-0 mt-2 w-80 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100/50 dark:border-gray-800/50 overflow-hidden z-50">
                   <div className="p-4 border-b border-gray-100 dark:border-gray-800">
                     <h3 className="font-semibold text-gray-900 dark:text-white">
                       Notifications

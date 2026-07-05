@@ -282,10 +282,10 @@ function generateAttendanceRecord(baseDate: Date): AttendanceRecord {
 }
 
 export const MOCK_ATTENDANCE_RECORDS: AttendanceRecord[] = Array.from(
-  { length: 30 },
+  { length: 365 },
   (_, i) => {
     const date = new Date();
-    date.setDate(date.getDate() - (29 - i));
+    date.setDate(date.getDate() - (364 - i));
     return generateAttendanceRecord(date);
   },
 );

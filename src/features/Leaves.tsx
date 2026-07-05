@@ -96,6 +96,108 @@ export function Leaves() {
         </Button>
       </div>
 
+      {/* Request Form (Conditional) */}
+      {showForm && (
+        <div
+          ref={formRef}
+          className="animate-in slide-in-from-top-8 zoom-in-95 fade-in duration-500 ease-out"
+        >
+          <Card className="border-none shadow-xl shadow-indigo-100/50 dark:shadow-none ring-1 ring-black/5 dark:ring-white/10 bg-white/50 dark:bg-[#1a1d27]/80 backdrop-blur-xl">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl">New Leave Request</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Start Date
+                    </label>
+                    <Input
+                      type="date"
+                      value={form.startDate}
+                      onChange={(e) =>
+                        setForm({ ...form, startDate: e.target.value })
+                      }
+                      required
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      End Date
+                    </label>
+                    <Input
+                      type="date"
+                      value={form.endDate}
+                      onChange={(e) =>
+                        setForm({ ...form, endDate: e.target.value })
+                      }
+                      required
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Leave Type
+                    </label>
+                    <select
+                      value={form.type}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          type: e.target.value as LeaveType,
+                        })
+                      }
+                      className="flex h-10 w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                      <option value="Casual">Casual Leave</option>
+                      <option value="Sick">Sick Leave</option>
+                      <option value="Earned">Earned Leave</option>
+                      <option value="Maternity">Maternity Leave</option>
+                      <option value="Paternity">Paternity Leave</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Reason
+                  </label>
+                  <textarea
+                    value={form.reason}
+                    onChange={(e) =>
+                      setForm({ ...form, reason: e.target.value })
+                    }
+                    required
+                    rows={3}
+                    className="flex w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="Briefly explain the reason for your leave..."
+                  />
+                </div>
+
+                <div className="flex justify-end gap-3 pt-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full sm:w-auto"
+                    onClick={() => setShowForm(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700"
+                  >
+                    <Send className="w-4 h-4 mr-2" /> Submit Request
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column - Summary */}
         <div className="lg:col-span-5 space-y-6">
@@ -146,106 +248,7 @@ export function Leaves() {
             </CardContent>
           </Card>
 
-          {/* Request Form (Conditional) */}
-          {showForm && (
-            <div
-              ref={formRef}
-              className="animate-in slide-in-from-top-8 zoom-in-95 fade-in duration-500 ease-out"
-            >
-              <Card className="border-none shadow-lg shadow-indigo-100 dark:shadow-none ring-1 ring-black/5 dark:ring-white/10">
-                <CardHeader>
-                  <CardTitle>Leave Request</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          Start Date
-                        </label>
-                        <Input
-                          type="date"
-                          value={form.startDate}
-                          onChange={(e) =>
-                            setForm({ ...form, startDate: e.target.value })
-                          }
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          End Date
-                        </label>
-                        <Input
-                          type="date"
-                          value={form.endDate}
-                          onChange={(e) =>
-                            setForm({ ...form, endDate: e.target.value })
-                          }
-                          required
-                        />
-                      </div>
-                    </div>
 
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Leave Type
-                      </label>
-                      <select
-                        value={form.type}
-                        onChange={(e) =>
-                          setForm({
-                            ...form,
-                            type: e.target.value as LeaveType,
-                          })
-                        }
-                        className="flex h-10 w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                      >
-                        <option value="Casual">Casual Leave</option>
-                        <option value="Sick">Sick Leave</option>
-                        <option value="Earned">Earned Leave</option>
-                        <option value="Maternity">Maternity Leave</option>
-                        <option value="Paternity">Paternity Leave</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Reason
-                      </label>
-                      <textarea
-                        value={form.reason}
-                        onChange={(e) =>
-                          setForm({ ...form, reason: e.target.value })
-                        }
-                        required
-                        rows={3}
-                        className="flex w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                        placeholder="Reason for leave..."
-                      />
-                    </div>
-
-                    <div className="flex gap-3 pt-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className="flex-1"
-                        onClick={() => setShowForm(false)}
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        type="submit"
-                        className="flex-1 bg-indigo-600 hover:bg-indigo-700"
-                      >
-                        <Send className="w-4 h-4 mr-2" /> Submit Request
-                      </Button>
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-          )}
         </div>
 
         {/* Right Column - History */}
