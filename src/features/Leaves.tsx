@@ -198,7 +198,7 @@ export function Leaves() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 lg:gap-6">
         {/* Left Column - Summary */}
         <div className="lg:col-span-5 space-y-6">
           {/* Summary Card */}

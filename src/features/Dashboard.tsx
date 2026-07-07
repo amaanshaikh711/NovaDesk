@@ -118,29 +118,29 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
       </div>
 
       {/* Top Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
         {/* Attendance Card */}
         <Card
           className="group relative overflow-hidden border border-emerald-100 dark:border-emerald-900/30 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-y-1 bg-white dark:bg-[#1a1d27]"
           onClick={() => setActiveTab("attendance")}
         >
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-50 dark:bg-emerald-900/20 rounded-full blur-2xl group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 transition-colors" />
-          <CardContent className="p-5 md:p-6 relative z-10">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+          <CardContent className="p-4 md:p-5 lg:p-6 relative z-10">
+            <div className="flex justify-between items-start gap-3">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
                   AM Shift
                 </p>
-                <h3 className="text-3xl font-bold mt-2 text-gray-900 dark:text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 text-gray-900 dark:text-white tracking-tight">
                   Present
                 </h3>
-                <div className="flex items-center gap-1.5 mt-3 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-medium w-fit whitespace-nowrap">
-                  <CheckCircle className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 mt-2 sm:mt-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-[10px] sm:text-xs font-medium w-fit whitespace-nowrap">
+                  <CheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   <span>09:14 AM</span>
                 </div>
               </div>
-              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/40 dark:to-emerald-800/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <CheckCircle className="w-6 h-6" />
+              <div className="flex-shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/40 dark:to-emerald-800/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
             </div>
           </CardContent>
@@ -152,27 +152,27 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
           onClick={() => setActiveTab("leaves")}
         >
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-purple-50 dark:bg-purple-900/20 rounded-full blur-2xl group-hover:bg-purple-100 dark:group-hover:bg-purple-900/30 transition-colors" />
-          <CardContent className="p-5 md:p-6 relative z-10">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+          <CardContent className="p-4 md:p-5 lg:p-6 relative z-10">
+            <div className="flex justify-between items-start gap-3">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
                   Leaves Remaining
                 </p>
-                <div className="flex items-baseline gap-2 mt-2">
-                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
+                <div className="flex items-baseline gap-1 sm:gap-2 mt-1 sm:mt-2">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
                     {12 + 8 + 15 - 3 - 2 - 4}
                   </h3>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium">
                     / {12 + 8 + 15}
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 mt-3 px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs font-medium w-fit whitespace-nowrap">
-                  <Calendar className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 mt-2 sm:mt-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-[10px] sm:text-xs font-medium w-fit whitespace-nowrap">
+                  <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   <span>Available</span>
                 </div>
               </div>
-              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/20 flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Calendar className="w-6 h-6" />
+              <div className="flex-shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/20 flex items-center justify-center text-purple-600 dark:text-purple-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
             </div>
           </CardContent>
@@ -184,25 +184,25 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
           onClick={() => setActiveTab("leaves")}
         >
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-amber-50 dark:bg-amber-900/20 rounded-full blur-2xl group-hover:bg-amber-100 dark:group-hover:bg-amber-900/30 transition-colors" />
-          <CardContent className="p-5 md:p-6 relative z-10">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+          <CardContent className="p-4 md:p-5 lg:p-6 relative z-10">
+            <div className="flex justify-between items-start gap-3">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
                   Pending Requests
                 </p>
-                <h3 className="text-3xl font-bold mt-2 text-gray-900 dark:text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 text-gray-900 dark:text-white tracking-tight">
                   {
                     MOCK_LEAVE_REQUESTS.filter((r) => r.status === "Pending")
                       .length
                   }
                 </h3>
-                <div className="flex items-center gap-1.5 mt-3 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-medium w-fit whitespace-nowrap">
-                  <Clock className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 mt-2 sm:mt-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10px] sm:text-xs font-medium w-fit whitespace-nowrap">
+                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   <span>Awaiting Approval</span>
                 </div>
               </div>
-              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/40 dark:to-amber-800/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Clock className="w-6 h-6" />
+              <div className="flex-shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-100 to-amber-50 dark:from-amber-900/40 dark:to-amber-800/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
             </div>
           </CardContent>
@@ -214,24 +214,24 @@ export function Dashboard({ setActiveTab }: DashboardProps) {
           onClick={() => setActiveTab("announcements")}
         >
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-2xl group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 transition-colors" />
-          <CardContent className="p-5 md:p-6 relative z-10">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+          <CardContent className="p-4 md:p-5 lg:p-6 relative z-10">
+            <div className="flex justify-between items-start gap-3">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
                   Announcements
                 </p>
-                <h3 className="text-3xl font-bold mt-2 text-gray-900 dark:text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold mt-1 sm:mt-2 text-gray-900 dark:text-white tracking-tight">
                   {MOCK_ANNOUNCEMENTS.length}
                 </h3>
-                <div className="flex items-center gap-1.5 mt-3 px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-medium w-fit whitespace-nowrap">
-                  <Bell className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 mt-2 sm:mt-3 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] sm:text-xs font-medium w-fit whitespace-nowrap">
+                  <Bell className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   <span>
                     {MOCK_ANNOUNCEMENTS.filter((a) => !a.isRead).length} New
                   </span>
                 </div>
               </div>
-              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-800/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Bell className="w-6 h-6" />
+              <div className="flex-shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-800/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                <Bell className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
             </div>
           </CardContent>

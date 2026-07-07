@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MessageSquare, X, Send, Bot, User } from "lucide-react";
 import { cn } from "../lib/utils";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import ReactMarkdown from "react-markdown";
 import {
   MOCK_EMPLOYEES,
@@ -61,18 +61,37 @@ export function Chatbot() {
 
       const systemPrompt = `You are FlowDesk Assistant, a highly capable AI for the FlowDesk Employee Dashboard. 
 Answer questions using this exact data:
-- Employees: ${JSON.stringify(MOCK_EMPLOYEES)}
+- Employees: ${JSON.stringify(MOCK_EMPLOYEES.slice(0, 10))}
 - Announcements: ${JSON.stringify(MOCK_ANNOUNCEMENTS)}
 - Leave Requests: ${JSON.stringify(MOCK_LEAVE_REQUESTS)}
-- Attendance: ${JSON.stringify(MOCK_ATTENDANCE_RECORDS)}
-Always format your responses using Markdown for better readability (bolding, lists, etc).
-User question: "${userMessage}"`;
+- Recent Attendance: ${JSON.stringify(MOCK_ATTENDANCE_RECORDS.slice(-14))}
+Always format your responses using Markdown for better readability (bolding, lists, etc).`;
 
-      const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-      const result = await model.generateContent(systemPrompt);
-      const response = await result.response;
-      const text = response.text();
+      const apiResponse = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": window.location.href,
+          "X-Title": "FlowDesk",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-flash", 
+          max_tokens: 1000,
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userMessage }
+          ]
+        })
+      });
+
+      if (!apiResponse.ok) {
+        const errorData = await apiResponse.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || `OpenRouter Error: ${apiResponse.status}`);
+      }
+
+      const data = await apiResponse.json();
+      const text = data.choices[0].message.content;
 
       setMessages((prev) => [...prev, { role: "bot", content: text }]);
     } catch (error) {
@@ -81,7 +100,7 @@ User question: "${userMessage}"`;
         ...prev,
         {
           role: "bot",
-          content: "Sorry, I encountered an error. Please try again later.",
+          content: `Sorry, I encountered an error: ${error instanceof Error ? error.message : "Unknown error"}. Please try again.`,
         },
       ]);
     } finally {

@@ -37,7 +37,7 @@ const navItems = [
 
 export function Layout({ children, activeTab, setActiveTab }: LayoutProps) {
   const { theme, setTheme } = useTheme();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isListening, setIsListening] = useState(false);

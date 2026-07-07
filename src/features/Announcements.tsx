@@ -82,7 +82,7 @@ export function Announcements() {
         </Card>
       )}
 
-      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
         {MOCK_ANNOUNCEMENTS.map((announcement) => (
           <Card
             key={announcement.id}
